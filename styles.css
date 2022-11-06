@@ -1,20 +1,71 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
 body {
     margin: 0;
+    font-family:'Courier New', Courier, monospace;
+    color: gray;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    width: 7.5rem;
+    padding-block: .3rem;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+button#btnStartOver {
+    height: 2rem;
+    border: transparent;
+    font-size: .8rem;
+    color: gray;
+    background-color: transparent;
+}
+
+button#btnStartOver:hover {
+    font-size: 1rem;
 }
 
 .fullscreen {
-    height: 100vh;
-    width: 100vw;
     position: absolute;
     top: 0;
     left: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
-.centered {
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    max-width: 100%;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    place-items: center;
+    align-items: center;
+}
+
+.buttons {
+    margin-block: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .bright {
@@ -31,11 +82,25 @@ body {
     height: 1rem;
 }
 
+#score > span {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+}
+
 #endResult {
-    font-size: 4rem;
+    margin-block: 3rem;
+    font-size: clamp(3rem, 10vw, 5rem);
     font-weight: bold;
 }
 
 [data-visible="false"] {
     display: none;
+}
+
+@media screen and (min-width: 450px) {
+    .buttons {
+        flex-direction: row;
+    }
 }
