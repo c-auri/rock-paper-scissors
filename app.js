@@ -3,11 +3,13 @@ let playerScore = 0
 let computerScore = 0
 
 const buttons = document.querySelectorAll('button')
-buttons.forEach((b) => b.addEventListener('click', (e) => {
+buttons.forEach((b) => b.addEventListener('click', playRound))
+
+function playRound(e) {
     const playerChoice = e.target.getAttribute('data-value')
     const computerChoice = getComputerChoice()
 
-    const result = playRound(playerChoice, computerChoice)
+    const result = getResult(playerChoice, computerChoice)
     show(result, playerChoice, computerChoice)
     updateScore(result)
     showScore()
@@ -16,7 +18,7 @@ buttons.forEach((b) => b.addEventListener('click', (e) => {
        announceWinner()
        resetScore()
     }
-}))
+}
 
 function getComputerChoice() {
     const random = Math.floor(Math.random() * 3)
@@ -29,7 +31,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerChoice, computerChoice) {
+function getResult(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
         return "draw"
     }
