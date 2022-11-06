@@ -2,23 +2,23 @@ const POINTS_NEEDED = 5
 let playerScore = 0
 let computerScore = 0
 
-const spanPlayerScore = document.querySelector('#playerScore')
-const spanComputerScore = document.querySelector('#computerScore')
-const pResult = document.querySelector('#pResult')
+const spanPlayerScore = document.querySelector('#score-player')
+const spanComputerScore = document.querySelector('#score-computer')
+const pResult = document.querySelector('#p-result')
 showScore()
 show()
 
-const endScreen = document.querySelector('#endScreen')
+const endScreen = document.querySelector('#endscreen')
 const endResult = document.querySelector('#endResult')
 
-const btnStartOver = document.querySelector('#btnStartOver')
+const btnStartOver = document.querySelector('#btn-start-over')
 btnStartOver.addEventListener('click', (e) => {
     resetScore()
     showScore()
     toggleVisibility(endScreen)
 })
 
-const buttons = document.querySelectorAll('.btnChoice')
+const buttons = document.querySelectorAll('.btn-choice')
 buttons.forEach((b) => b.addEventListener('click', playRound))
 
 function playRound(e) {
