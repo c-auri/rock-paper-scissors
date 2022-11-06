@@ -9,3 +9,7 @@ main {
     justify-content: center;
     place-items: center;
 }
+
+#pResult {
+    height: 1rem;
+}

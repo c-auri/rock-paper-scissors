@@ -4,7 +4,9 @@ let computerScore = 0
 
 const spanPlayerScore = document.querySelector('#playerScore')
 const spanComputerScore = document.querySelector('#computerScore')
+const pResult = document.querySelector('#pResult')
 showScore()
+show()
 
 const buttons = document.querySelectorAll('button')
 buttons.forEach((b) => b.addEventListener('click', playRound))
@@ -21,6 +23,8 @@ function playRound(e) {
     if (somebodyWon()) {
        announceWinner()
        resetScore()
+       showScore()
+       show()
     }
 }
 
@@ -54,16 +58,16 @@ function playerWon(playerChoice, computerChoice) {
 function show(result, playerChoice, computerChoice) {
     switch (result) {
         case "draw":
-            console.log("It's a draw!")
+            pResult.innerText = "It's a draw!"
             break;
         case "win":
-            console.log(`You win! ${playerChoice} beats ${computerChoice}`)
+            pResult.innerText = `You win! ${playerChoice} beats ${computerChoice}`
             break;
         case "loss":
-            console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
+            pResult.innerText = `You lose! ${computerChoice} beats ${playerChoice}`
             break;
         default:
-            throw new Error('Unexpected result: ' + result)
+            pResult.innerText = ""
     }
 }
 
