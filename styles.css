@@ -2,14 +2,40 @@ body {
     margin: 0;
 }
 
-main {
+.fullscreen {
     height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.centered {
     display: flex;
     flex-direction: column;
     justify-content: center;
     place-items: center;
 }
 
+.bright {
+    background-color: white;
+    color: black;
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
 #pResult {
     height: 1rem;
+}
+
+#endResult {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+[data-visible="false"] {
+    display: none;
 }

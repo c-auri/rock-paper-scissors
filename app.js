@@ -8,7 +8,17 @@ const pResult = document.querySelector('#pResult')
 showScore()
 show()
 
-const buttons = document.querySelectorAll('button')
+const endScreen = document.querySelector('#endScreen')
+const endResult = document.querySelector('#endResult')
+
+const btnStartOver = document.querySelector('#btnStartOver')
+btnStartOver.addEventListener('click', (e) => {
+    resetScore()
+    showScore()
+    toggleVisibility(endScreen)
+})
+
+const buttons = document.querySelectorAll('.btnChoice')
 buttons.forEach((b) => b.addEventListener('click', playRound))
 
 function playRound(e) {
@@ -95,13 +105,27 @@ function somebodyWon() {
 
 function announceWinner() {
     if (playerScore > computerScore) {
-        console.log("You won the Game!")
+        endScreen.classList.add('bright')
+        endScreen.classList.remove('dark')
+        endResult.innerText = "You Won!"
     } else {
-        console.log("Game Over")
+        endScreen.classList.add('dark')
+        endScreen.classList.remove('bright')
+        endResult.innerText = "Game Over"
     }
+
+    toggleVisibility(endScreen)
 }
 
 function resetScore() {
     playerScore = 0
     computerScore = 0
+}
+
+function toggleVisibility(element) {
+    if (element.getAttribute("data-visible") === "false") {
+        element.setAttribute("data-visible", "true")
+    } else {
+        element.setAttribute("data-visible", "false")
+    }
 }

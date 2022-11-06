@@ -9,19 +9,29 @@
 </head>
 <body>
     <main>
+        <div class="fullscreen centered">
 
-        <p>
-            Player -
-            <span id="playerScore"></span>
-            :
-            <span id="computerScore"></span>
-            - Computer
-        </p>
+            <p>
+                Player -
+                <span id="playerScore"></span>
+                :
+                <span id="computerScore"></span>
+                - Computer
+            </p>
 
-        <div>
-            <button data-value="Rock">Rock</button>
-            <button data-value="Paper">Paper</button>
-            <button data-value="Scissors">Scissors</button>
+            <div>
+                <button class="btnChoice" data-value="Rock">Rock</button>
+                <button class="btnChoice" data-value="Paper">Paper</button>
+                <button class="btnChoice" data-value="Scissors">Scissors</button>
+            </div>
+
+            <p id="pResult"></p>
+
+        </div>
+
+        <div class="fullscreen centered" id="endScreen" data-visible="false">
+            <p id="endResult"></p>
+            <button id="btnStartOver">Start over!</button>
         </div>
 
         <p id="pResult"></p>
