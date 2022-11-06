@@ -119,13 +119,13 @@ function resetScore() {
 }
 
 function intoTheLight() {
-    document.body.classList.add('bright')
+    document.body.classList.add('light')
     document.body.classList.remove('dark')
 }
 
 function intoTheDarkness() {
     document.body.classList.add('dark')
-    document.body.classList.remove('bright')
+    document.body.classList.remove('light')
 }
 
 function toggleView() {
