@@ -5,22 +5,20 @@ let computerScore = 0
 const spanPlayerScore = document.querySelector('#score-player')
 const spanComputerScore = document.querySelector('#score-computer')
 const pResult = document.querySelector('#p-result')
-showScore()
-show()
-
 const endResult = document.querySelector('#endresult')
+const buttonContainer = document.querySelector('#button-container')
+const buttons = document.querySelectorAll('.btn-choice')
 const btnStartOver = document.querySelector('#btn-start-over')
-btnStartOver.addEventListener('click', (e) => {
-    resetScore()
-    showScore()
+
+btnStartOver.addEventListener('click', startOver)
+buttons.forEach((b) => b.addEventListener('click', playRound))
+
+function startOver(e) {
+    updateScore("reset")
     toggleView()
     show()
     intoTheLight()
-})
-
-const buttonContainer = document.querySelector('#button-container')
-const buttons = document.querySelectorAll('.btn-choice')
-buttons.forEach((b) => b.addEventListener('click', playRound))
+}
 
 function playRound(e) {
     const playerChoice = e.target.getAttribute('data-value')
@@ -29,11 +27,9 @@ function playRound(e) {
     const result = getResult(playerChoice, computerChoice)
     show(result, playerChoice, computerChoice)
     updateScore(result)
-    showScore()
 
     if (somebodyWon()) {
         announceWinner()
-        showScore()
         toggleView()
     }
 }
@@ -88,13 +84,17 @@ function updateScore(result) {
             break;
         case "loss":
             computerScore++;
+            break;
+        case "reset":
+            playerScore = 0
+            computerScore = 0
+            break;
+        case "draw":
         default:
-            // tie, no update
+            // no update
             break;
     }
-}
 
-function showScore() {
     spanPlayerScore.innerText = playerScore
     spanComputerScore.innerText = computerScore
 }
@@ -108,27 +108,15 @@ function announceWinner() {
     if (playerScore > computerScore) {
         endResult.innerText = "You Won!"
     } else {
-        intoTheDarkness()
         endResult.innerText = "Game Over"
     }
 }
 
-function resetScore() {
-    playerScore = 0
-    computerScore = 0
-}
-
-function intoTheLight() {
-    document.body.classList.add('light')
-    document.body.classList.remove('dark')
-}
-
-function intoTheDarkness() {
-    document.body.classList.add('dark')
-    document.body.classList.remove('light')
-}
-
 function toggleView() {
+    if (endResult.innerText === "Game Over") {
+        intoTheDarkness()
+    }
+
     toggleVisibility(buttonContainer, pResult, endResult, btnStartOver)
 }
 
@@ -140,4 +128,14 @@ function toggleVisibility(...elements) {
             element.setAttribute("data-visible", "false")
         }
     }
+}
+
+function intoTheLight() {
+    document.body.classList.add('light')
+    document.body.classList.remove('dark')
+}
+
+function intoTheDarkness() {
+    document.body.classList.add('dark')
+    document.body.classList.remove('light')
 }
