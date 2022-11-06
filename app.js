@@ -2,6 +2,10 @@ const POINTS_NEEDED = 5
 let playerScore = 0
 let computerScore = 0
 
+const spanPlayerScore = document.querySelector('#playerScore')
+const spanComputerScore = document.querySelector('#computerScore')
+showScore()
+
 const buttons = document.querySelectorAll('button')
 buttons.forEach((b) => b.addEventListener('click', playRound))
 
@@ -77,7 +81,8 @@ function updateScore(result) {
 }
 
 function showScore() {
-    console.log(`Player - ${playerScore} : ${computerScore} - Computer`)
+    spanPlayerScore.innerText = playerScore
+    spanComputerScore.innerText = computerScore
 }
 
 function somebodyWon() {
