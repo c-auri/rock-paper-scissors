@@ -8,16 +8,17 @@ const pResult = document.querySelector('#p-result')
 showScore()
 show()
 
-const endScreen = document.querySelector('#endscreen')
-const endResult = document.querySelector('#endResult')
-
+const endResult = document.querySelector('#endresult')
 const btnStartOver = document.querySelector('#btn-start-over')
 btnStartOver.addEventListener('click', (e) => {
     resetScore()
     showScore()
-    toggleVisibility(endScreen)
+    toggleView()
+    show()
+    intoTheLight()
 })
 
+const buttonContainer = document.querySelector('#button-container')
 const buttons = document.querySelectorAll('.btn-choice')
 buttons.forEach((b) => b.addEventListener('click', playRound))
 
@@ -31,10 +32,9 @@ function playRound(e) {
     showScore()
 
     if (somebodyWon()) {
-       announceWinner()
-       resetScore()
-       showScore()
-       show()
+        announceWinner()
+        showScore()
+        toggleView()
     }
 }
 
@@ -99,22 +99,18 @@ function showScore() {
     spanComputerScore.innerText = computerScore
 }
 
+
 function somebodyWon() {
     return playerScore === POINTS_NEEDED || computerScore === POINTS_NEEDED
 }
 
 function announceWinner() {
     if (playerScore > computerScore) {
-        endScreen.classList.add('bright')
-        endScreen.classList.remove('dark')
         endResult.innerText = "You Won!"
     } else {
-        endScreen.classList.add('dark')
-        endScreen.classList.remove('bright')
+        intoTheDarkness()
         endResult.innerText = "Game Over"
     }
-
-    toggleVisibility(endScreen)
 }
 
 function resetScore() {
@@ -122,10 +118,26 @@ function resetScore() {
     computerScore = 0
 }
 
-function toggleVisibility(element) {
-    if (element.getAttribute("data-visible") === "false") {
-        element.setAttribute("data-visible", "true")
-    } else {
-        element.setAttribute("data-visible", "false")
+function intoTheLight() {
+    document.body.classList.add('bright')
+    document.body.classList.remove('dark')
+}
+
+function intoTheDarkness() {
+    document.body.classList.add('dark')
+    document.body.classList.remove('bright')
+}
+
+function toggleView() {
+    toggleVisibility(buttonContainer, pResult, endResult, btnStartOver)
+}
+
+function toggleVisibility(...elements) {
+    for (const element of elements) {
+        if (element.getAttribute("data-visible") === "false") {
+            element.setAttribute("data-visible", "true")
+        } else {
+            element.setAttribute("data-visible", "false")
+        }
     }
 }

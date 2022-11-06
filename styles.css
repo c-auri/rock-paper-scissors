@@ -1,11 +1,56 @@
 * {
-    box-sizing: border-box;
     user-select: none;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 body {
-    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
     font-family:'Courier New', Courier, monospace;
+}
+
+.content {
+    width: 500px;
+    height: 500px;
+    max-width: 100%;
+    max-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 8rem 1fr;
+    place-items: center;
+}
+
+#score {
+    align-self: end;
+    margin-bottom: 1rem;
+    color: gray;
+}
+
+#score > span {
+    padding-inline: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+#endresult {
+    font-size: clamp(3rem, 10vw, 4rem);
+    font-weight: bold;
+}
+
+#btn-start-over,
+#p-result {
+    align-self: start;
+    margin-top: 1rem;
+    height: 2rem;
     color: gray;
 }
 
@@ -13,7 +58,7 @@ button {
     all: unset;
     cursor: pointer;
     width: 7.5rem;
-    padding-block: .3rem;
+    height: 2rem;
     border: 2px solid black;
     text-align: center;
     font-weight: bold;
@@ -27,45 +72,13 @@ button:hover {
 }
 
 button#btn-start-over {
-    height: 2rem;
-    border: transparent;
     font-size: .8rem;
-    color: gray;
+    border: transparent;
     background-color: transparent;
 }
 
 button#btn-start-over:hover {
     font-size: 1rem;
-}
-
-.fullscreen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-}
-
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    max-width: 100%;
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttons {
-    margin-block: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .bright {
@@ -78,29 +91,12 @@ button#btn-start-over:hover {
     color: white;
 }
 
-#p-result {
-    height: 1rem;
-}
-
-#score > span {
-    padding-inline: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: black;
-}
-
-#endResult {
-    margin-block: 3rem;
-    font-size: clamp(3rem, 10vw, 5rem);
-    font-weight: bold;
-}
-
 [data-visible="false"] {
-    display: none;
+    display: none !important;
 }
 
 @media screen and (min-width: 450px) {
-    .buttons {
+    #button-container {
         flex-direction: row;
     }
 }

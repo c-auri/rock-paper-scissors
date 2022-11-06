@@ -8,37 +8,26 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <main>
-        <div class="fullscreen">
+    <main class="content">
 
-            <div class="content centered">
+        <p id="score">
+            Player
+            <span id="score-player"></span>
+            -
+            <span id="score-computer"></span>
+            Computer
+        </p>
 
-                <p id="score">
-                    Player
-                    <span id="score-player"></span>
-                    -
-                    <span id="score-computer"></span>
-                    Computer
-                </p>
-
-                <div class="buttons">
-                    <button class="btn-choice" data-value="Rock">Rock</button>
-                    <button class="btn-choice" data-value="Paper">Paper</button>
-                    <button class="btn-choice" data-value="Scissors">Scissors</button>
-                </div>
-
-                <p id="p-result"></p>
-
-            </div>
-
+        <div id="button-container">
+            <button class="btn-choice" data-value="Rock">Rock</button>
+            <button class="btn-choice" data-value="Paper">Paper</button>
+            <button class="btn-choice" data-value="Scissors">Scissors</button>
         </div>
 
-        <div class="fullscreen" id="endscreen" data-visible="false">
-            <div class="content centered">
-                <p id="endResult"></p>
-                <button id="btn-start-over">start over</button>
-            </div>
-        </div>
+        <p id="endresult" data-visible="false"></p>
+
+        <p id="p-result"></p>
+        <button id="btn-start-over" data-visible="false">start over</button>
 
     </main>
 
