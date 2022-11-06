@@ -34,31 +34,17 @@ function getComputerChoice() {
 function getResult(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
         return "draw"
+    } else if (playerWon(playerChoice, computerChoice)) {
+        return "loss"
+    } else {
+        return "win"
     }
+}
 
-    if (playerChoice === "Rock") {
-        if (computerChoice === "Paper") {
-            return "loss"
-        } else {
-            return "win"
-        }
-    }
-
-    if (playerChoice === "Paper") {
-        if (computerChoice === "Scissors") {
-            return "loss"
-        } else {
-            return "win"
-        }
-    }
-
-    if (playerChoice === "Scissors") {
-        if (computerChoice === "Rock") {
-            return "loss"
-        } else {
-            return "win"
-        }
-    }
+function playerWon(playerChoice, computerChoice) {
+    return playerChoice === "Paper" && computerChoice === "Rock"
+        || playerChoice === "Scissors" && computerChoice === "Paper"
+        || playerChoice === "Rock" && computerChoice === "Scissors"
 }
 
 function show(result, playerChoice, computerChoice) {
