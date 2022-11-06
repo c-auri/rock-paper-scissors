@@ -1,3 +1,9 @@
+:root {
+    --black: #111;
+    --white: #eee;
+    --gray: #888;
+}
+
 * {
     user-select: none;
     box-sizing: border-box;
@@ -25,7 +31,7 @@ body {
 #score {
     align-self: end;
     margin-bottom: 1rem;
-    color: gray;
+    color: var(--gray);
 }
 
 #score > span {
@@ -51,7 +57,7 @@ body {
     align-self: start;
     margin-top: 1rem;
     height: 2rem;
-    color: gray;
+    color: var(--gray);
 }
 
 button {
@@ -59,16 +65,16 @@ button {
     cursor: pointer;
     width: 7.5rem;
     height: 2rem;
-    border: 2px solid black;
+    border: 2px solid var(--black);
     text-align: center;
     font-weight: bold;
-    color: white;
-    background-color: black;
+    color: var(--white);
+    background-color: var(--black);
 }
 
 button:hover {
-    background-color: white;
-    color: black;
+    background-color: var(--white);
+    color: var(--black);
 }
 
 button#btn-start-over {
@@ -82,13 +88,13 @@ button#btn-start-over:hover {
 }
 
 .bright {
-    background-color: white;
-    color: black;
+    background-color: var(--white);
+    color: var(--black);
 }
 
 .dark {
-    background-color: black;
-    color: white;
+    background-color: var(--black);
+    color: var(--white);
 }
 
 [data-visible="false"] {
