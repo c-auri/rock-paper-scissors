@@ -1,3 +1,9 @@
+const ROUNDS_TO_WIN = 5
+let scorePlayer = 0
+let scoreComputer = 0
+
+const buttons = document.querySelectorAll("button")
+
 function getComputerChoice() {
     const random = Math.floor(Math.random() * 3)
 
@@ -39,12 +45,29 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        const playerChoice = prompt("Rock, Paper, Scissors!").toLowerCase()
+function playGame(e) {
         const computerChoice = getComputerChoice()
-        console.log(playRound(playerChoice, computerChoice))
+            const playerChoice = e.target.textContent
+            const roundResult = playRound(playerChoice, computerChoice)
+
+            if (roundResult.includes("win")) {
+                scorePlayer++
+                console.log("Player wins round")
+            } else if (roundResult.includes("Lose")) {
+                scoreComputer++
+                console.log("Computer wins round")
+            } else {
+                console.log("Draw!")
+            }
+
+        console.log(`Player ${scorePlayer} : ${scoreComputer} Computer`)
+
+    if (scorePlayer === ROUNDS_TO_WIN || scoreComputer === ROUNDS_TO_WIN) {
+        const winner = scorePlayer > scoreComputer ? "Player" : "Computer"
+        console.log(winner + " wins game!")
+        scorePlayer = 0
+        scoreComputer = 0
     }
 }
 
-playGame()
+buttons.forEach(b => b.addEventListener("click", playGame))
