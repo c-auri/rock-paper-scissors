@@ -1,11 +1,11 @@
 const POINTS_NEEDED = 5
-let playerScore = 0
-let computerScore = 0
+let scorePlayer = 0
+let scoreComputer = 0
 
-const spanPlayerScore = document.querySelector('#score-player')
-const spanComputerScore = document.querySelector('#score-computer')
-const pResult = document.querySelector('#p-result')
-const endResult = document.querySelector('#endresult')
+const spanScorePlayer = document.querySelector('#score-player')
+const spanScoreComputer = document.querySelector('#score-computer')
+const pRoundResult = document.querySelector('#round-result')
+const pEndResult = document.querySelector('#end-result')
 const buttonContainer = document.querySelector('#button-container')
 const buttons = document.querySelectorAll('.btn-choice')
 const btnStartOver = document.querySelector('#btn-start-over')
@@ -14,10 +14,10 @@ btnStartOver.addEventListener('click', startOver)
 buttons.forEach((b) => b.addEventListener('click', playRound))
 
 function startOver(e) {
+    resetRoundResult()
     updateScore("reset")
+    toWhiteScreen()
     toggleView()
-    show()
-    intoTheLight()
 }
 
 function playRound(e) {
@@ -61,33 +61,38 @@ function playerWon(playerChoice, computerChoice) {
         || playerChoice === "Rock" && computerChoice === "Scissors"
 }
 
-function show(result, playerChoice, computerChoice) {
-    switch (result) {
+function show(roundResult, playerChoice, computerChoice) {
+    switch (roundResult) {
         case "draw":
-            pResult.innerText = "It's a draw!"
+            pRoundResult.innerText = "It's a draw!"
             break;
         case "win":
-            pResult.innerText = `You win! ${playerChoice} beats ${computerChoice}`
+            pRoundResult.innerText = `You win! ${playerChoice} beats ${computerChoice}`
             break;
         case "loss":
-            pResult.innerText = `You lose! ${computerChoice} beats ${playerChoice}`
+            pRoundResult.innerText = `You lose! ${computerChoice} beats ${playerChoice}`
             break;
-        default:
-            pResult.innerText = ""
+        case "":
+            pRoundResult.innerText = ""
+            break;
     }
+}
+
+function resetRoundResult() {
+    show("")
 }
 
 function updateScore(result) {
     switch (result) {
         case "win":
-            playerScore++;
+            scorePlayer++;
             break;
         case "loss":
-            computerScore++;
+            scoreComputer++;
             break;
         case "reset":
-            playerScore = 0
-            computerScore = 0
+            scorePlayer = 0
+            scoreComputer = 0
             break;
         case "draw":
         default:
@@ -95,29 +100,26 @@ function updateScore(result) {
             break;
     }
 
-    spanPlayerScore.innerText = playerScore
-    spanComputerScore.innerText = computerScore
+    spanScorePlayer.innerText = scorePlayer
+    spanScoreComputer.innerText = scoreComputer
 }
 
 
 function somebodyWon() {
-    return playerScore === POINTS_NEEDED || computerScore === POINTS_NEEDED
+    return scorePlayer === POINTS_NEEDED || scoreComputer === POINTS_NEEDED
 }
 
 function announceWinner() {
-    if (playerScore > computerScore) {
-        endResult.innerText = "You Won!"
+    if (scorePlayer > scoreComputer) {
+        pEndResult.innerText = "You Won!"
     } else {
-        endResult.innerText = "Game Over"
+        pEndResult.innerText = "Game Over"
+        toBlackScreen()
     }
 }
 
 function toggleView() {
-    if (endResult.innerText === "Game Over") {
-        intoTheDarkness()
-    }
-
-    toggleVisibility(buttonContainer, pResult, endResult, btnStartOver)
+    toggleVisibility(buttonContainer, pRoundResult, pEndResult, btnStartOver)
 }
 
 function toggleVisibility(...elements) {
@@ -130,12 +132,12 @@ function toggleVisibility(...elements) {
     }
 }
 
-function intoTheLight() {
+function toWhiteScreen() {
     document.body.classList.add('light')
     document.body.classList.remove('dark')
 }
 
-function intoTheDarkness() {
+function toBlackScreen() {
     document.body.classList.add('dark')
     document.body.classList.remove('light')
 }
