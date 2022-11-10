@@ -46,8 +46,8 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function playGame(e) {
-        const computerChoice = getComputerChoice()
             const playerChoice = e.target.textContent
+            const computerChoice = getComputerChoice()
             const roundResult = playRound(playerChoice, computerChoice)
 
             if (roundResult.includes("win")) {
@@ -60,7 +60,7 @@ function playGame(e) {
                 console.log("Draw!")
             }
 
-        console.log(`Player ${scorePlayer} : ${scoreComputer} Computer`)
+            console.log(`Player ${scorePlayer} : ${scoreComputer} Computer`)
 
     if (scorePlayer === ROUNDS_TO_WIN || scoreComputer === ROUNDS_TO_WIN) {
         const winner = scorePlayer > scoreComputer ? "Player" : "Computer"
