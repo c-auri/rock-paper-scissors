@@ -7,7 +7,8 @@ const spanComputerScore = document.querySelector('#score-computer')
 const pRoundResult = document.querySelector('#round-result')
 const pGameResult = document.querySelector('#game-result')
 const buttonContainer = document.querySelector('#button-container')
-const buttons = document.querySelectorAll("button")
+const buttons = document.querySelectorAll(".btn-choice")
+const buttonStartOver = document.querySelector('#btn-start-over')
 
 function getComputerChoice() {
     const random = Math.floor(Math.random() * 3)
@@ -18,6 +19,14 @@ function getComputerChoice() {
         case 2: return "Scissors"
         default: throw new Error('Invalid computer choice: ' + random)
     }
+}
+
+function startOver() {
+    scorePlayer = 0
+    scoreComputer = 0
+    show("")
+    toWhiteScreen()
+    toggleVisibility(buttonContainer, pRoundResult, pGameResult, buttonStartOver)
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -67,8 +76,6 @@ function playGame(e) {
 
     if (scorePlayer === ROUNDS_TO_WIN || scoreComputer === ROUNDS_TO_WIN) {
         showGameResult()
-        scorePlayer = 0
-        scoreComputer = 0
     }
 }
 
@@ -86,7 +93,13 @@ function showGameResult() {
         toBlackScreen()
     }
 
-    toggleVisibility(buttonContainer, pRoundResult, pGameResult)
+    toggleVisibility(buttonContainer, pRoundResult, pGameResult, buttonStartOver)
+}
+
+function toWhiteScreen() {
+    document.body.classList.remove('dark')
+    document.body.classList.add('light')
+
 }
 
 function toBlackScreen() {
@@ -105,3 +118,4 @@ function toggleVisibility(...elements) {
 }
 
 buttons.forEach(b => b.addEventListener("click", playGame))
+buttonStartOver.addEventListener("click", startOver)
