@@ -47,11 +47,11 @@ function playRound(playerChoice, computerChoice) {
 
 async function playGame() {
     while (scorePlayer < ROUNDS_TO_WIN && scoreComputer < ROUNDS_TO_WIN) {
-        const computerChoice = getComputerChoice()
         await new Promise(resolve => {
             buttons.forEach(b => b.addEventListener("click", resolve))
         }).then(e => {
             const playerChoice = e.target.textContent
+            const computerChoice = getComputerChoice()
             const roundResult = playRound(playerChoice, computerChoice)
 
             if (roundResult.includes("win")) {
@@ -63,9 +63,9 @@ async function playGame() {
             } else {
                 console.log("Draw!")
             }
-        })
 
-        console.log(`Player ${scorePlayer} : ${scoreComputer} Computer`)
+            console.log(`Player ${scorePlayer} : ${scoreComputer} Computer`)
+        })
     }
 
         const winner = scorePlayer > scoreComputer ? "Player" : "Computer"
