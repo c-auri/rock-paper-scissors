@@ -49,9 +49,9 @@ function getResult(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
         return "draw"
     } else if (playerWon(playerChoice, computerChoice)) {
-        return "loss"
-    } else {
         return "win"
+    } else {
+        return "loss"
     }
 }
 
@@ -67,10 +67,10 @@ function show(roundResult, playerChoice, computerChoice) {
             pRoundResult.innerText = "It's a draw!"
             break;
         case "win":
-            pRoundResult.innerText = `You win! ${playerChoice} beats ${computerChoice}`
+            pRoundResult.innerText = `You win! ${playerChoice} beats ${computerChoice}.`
             break;
         case "loss":
-            pRoundResult.innerText = `You lose! ${computerChoice} beats ${playerChoice}`
+            pRoundResult.innerText = `You lose! ${computerChoice} beats ${playerChoice}.`
             break;
         case "":
             pRoundResult.innerText = ""
