@@ -16,7 +16,7 @@ buttons.forEach((b) => b.addEventListener('click', playRound))
 function startOver(e) {
     resetRoundResult()
     updateScore("reset")
-    toWhiteScreen()
+    changeTheme("light")
     toggleView()
 }
 
@@ -114,7 +114,7 @@ function announceWinner() {
         pEndResult.innerText = "You Won!"
     } else {
         pEndResult.innerText = "Game Over"
-        toBlackScreen()
+        changeTheme("dark")
     }
 }
 
@@ -132,12 +132,6 @@ function toggleVisibility(...elements) {
     }
 }
 
-function toWhiteScreen() {
-    document.body.classList.add('light')
-    document.body.classList.remove('dark')
-}
-
-function toBlackScreen() {
-    document.body.classList.add('dark')
-    document.body.classList.remove('light')
+function changeTheme(theme) {
+    document.body.setAttribute("data-theme", theme)
 }
