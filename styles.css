@@ -1,7 +1,8 @@
 :root {
-    --black: #111;
-    --white: #eee;
-    --gray: #888;
+    --black: #0f0f0f;
+    --white: white;
+    --lightgray: #e8e8e8;
+    --gray: dimgray;
 }
 
 * {
@@ -73,12 +74,12 @@ button {
     border: 2px solid var(--black);
     text-align: center;
     font-weight: bold;
-    color: var(--white);
+    color: var(--lightgray);
     background-color: var(--black);
 }
 
 button:hover {
-    background-color: var(--white);
+    background-color: var(--lightgray);
     color: var(--black);
 }
 
@@ -98,7 +99,7 @@ footer {
     padding: .5rem 1.5rem;
     display: flex;
     justify-content: space-between;    
-    color: silver;
+    color: darkgray;
 }
 
 footer a {
@@ -116,13 +117,18 @@ footer a:hover {
 }
 
 [data-theme="light"] {
+    background-color: var(--lightgray);
+    color: var(--black);
+}
+
+[data-theme="white"] {
     background-color: var(--white);
     color: var(--black);
 }
 
 [data-theme="dark"] {
     background-color: var(--black);
-    color: var(--white);
+    color: var(--lightgray);
 }
 
 [data-visible="false"] {

@@ -112,6 +112,7 @@ function somebodyWon() {
 function announceWinner() {
     if (scorePlayer > scoreComputer) {
         pEndResult.innerText = "You Won!"
+        changeTheme("white")
     } else {
         pEndResult.innerText = "Game Over"
         changeTheme("dark")
