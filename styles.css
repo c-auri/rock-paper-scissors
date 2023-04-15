@@ -13,9 +13,14 @@
 body {
     height: 100vh;
     width: 100vw;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family:'Courier New', Courier, monospace;
+}
+
+main {
+    flex: 1;
 }
 
 .content {
@@ -85,6 +90,29 @@ button#btn-start-over {
 
 button#btn-start-over:hover {
     font-size: 1rem;
+}
+
+
+footer {
+    width: 100%;
+    padding: .5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;    
+    color: silver;
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: gray;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
 }
 
 [data-theme="light"] {
